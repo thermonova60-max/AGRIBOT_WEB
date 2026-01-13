@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free educational courses on farming - organic agriculture, irrigation, pest control, and modern farming techniques.">
+  <title>Education | Agri-Bot</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <style>
+    .course-card__actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .course-card__actions .btn {
+      flex: 1;
+      min-width: 100px;
+    }
+    .quiz-results {
+      text-align: center;
+    }
+    .quiz-results__score {
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.5rem;
+    }
+    .quiz-results__score.passed {
+      background: #E8F5E9;
+    }
+    .quiz-results__score.failed {
+      background: #FFF3E0;
+    }
+    .quiz-results__percentage {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .quiz-results__text {
+      font-size: 1.25rem;
+      margin-top: 0.5rem;
+    }
+    .quiz-results__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .quiz-progress {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+      font-size: 0.875rem;
+    }
+    .quiz-question h4 {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__logo">
+        <span>🌱 Agri-Bot</span>
+      </a>
+      
+      <div class="navbar__menu">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="about.html" class="navbar__link">About</a>
+        <a href="bot.html" class="navbar__link">Agri-Bot</a>
+        <a href="sustainable.html" class="navbar__link">Sustainable Farming</a>
+        <a href="resources.html" class="navbar__link">Resources</a>
+        <a href="marketplace.html" class="navbar__link">Marketplace</a>
+        <a href="education.html" class="navbar__link active">Education</a>
+        <a href="contact.html" class="navbar__link">Contact</a>
+      </div>
+      
+      <div class="navbar__toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="container text-center">
+      <h1>Learn <span style="color: var(--secondary);">Agriculture</span></h1>
+      <p style="max-width: 600px; margin: 0 auto;">Free courses on organic farming, irrigation, pest management, and modern agricultural technologies. Learn at your own pace.</p>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="section education">
+    <div class="container">
+      <div class="section-title">
+        <h2>📚 Available Courses</h2>
+        <p>Start learning today - all courses are completely free!</p>
+      </div>
+      
+      <div class="courses__grid" id="coursesGrid">
+        <!-- Courses will be loaded here by JavaScript -->
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <p>Loading courses...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="section" style="background-color: var(--bg-white);">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Learn With Us?</h2>
+        <p>Benefits of Agri-Bot Education Platform</p>
+      </div>
+      
+      <div class="features__grid">
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">🆓</span>
+          </div>
+          <h3>100% Free</h3>
+          <p>All courses are completely free. No hidden charges, no subscriptions, just learning.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">📱</span>
+          </div>
+          <h3>Learn Anywhere</h3>
+          <p>Access courses on any device - mobile, tablet, or computer. Learn in the field or at home.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">🎓</span>
+          </div>
+          <h3>Earn Certificates</h3>
+          <p>Complete quizzes to earn certificates that validate your agricultural knowledge.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">👨‍🌾</span>
+          </div>
+          <h3>Practical Content</h3>
+          <p>Courses designed by farmers and agricultural experts with real-world applications.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">🌐</span>
+          </div>
+          <h3>Offline Access</h3>
+          <p>Download content for offline learning - perfect for areas with limited connectivity.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">📊</span>
+          </div>
+          <h3>Track Progress</h3>
+          <p>Your progress is saved automatically. Pick up right where you left off.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Path -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>🎯 Recommended Learning Path</h2>
+        <p>Follow this path to become a sustainable farming expert</p>
+      </div>
+      
+      <div class="steps__grid">
+        <div class="step-card fade-in">
+          <div class="step-card__number">1</div>
+          <div class="step-card__content">
+            <h3>Start with Basics</h3>
+            <p>Begin with "Soil Health & Fertility" to understand the foundation of good farming. Healthy soil is the key to successful crops.</p>
+          </div>
+        </div>
+        
+        <div class="step-card fade-in">
+          <div class="step-card__number">2</div>
+          <div class="step-card__content">
+            <h3>Learn Organic Methods</h3>
+            <p>Move to "Introduction to Organic Farming" to learn sustainable practices that reduce costs and improve quality.</p>
+          </div>
+        </div>
+        
+        <div class="step-card fade-in">
+          <div class="step-card__number">3</div>
+          <div class="step-card__content">
+            <h3>Master Water Management</h3>
+            <p>Take "Water Management & Irrigation" to optimize water use - the most critical resource in farming.</p>
+          </div>
+        </div>
+        
+        <div class="step-card fade-in">
+          <div class="step-card__number">4</div>
+          <div class="step-card__content">
+            <h3>Protect Your Crops</h3>
+            <p>Learn "Pest & Disease Management" to identify problems early and use integrated pest management.</p>
+          </div>
+        </div>
+        
+        <div class="step-card fade-in">
+          <div class="step-card__number">5</div>
+          <div class="step-card__content">
+            <h3>Maximize Value</h3>
+            <p>Complete "Post-Harvest Management" to reduce losses and add value to your produce.</p>
+          </div>
+        </div>
+        
+        <div class="step-card fade-in">
+          <div class="step-card__number">6</div>
+          <div class="step-card__content">
+            <h3>Go Advanced</h3>
+            <p>Finally, explore "Modern Farming Technologies" to learn about precision agriculture and future farming.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white;">
+    <div class="container text-center">
+      <h2 style="color: white;">Ready to Start Learning?</h2>
+      <p style="max-width: 600px; margin: 0 auto 2rem; color: rgba(255,255,255,0.9);">Choose any course above and begin your journey to better farming today!</p>
+      <div class="hero__buttons" style="justify-content: center;">
+        <a href="#coursesGrid" class="btn btn-secondary">Browse Courses</a>
+        <a href="bot.html" class="btn" style="background: white; color: var(--primary);">Ask Agri-Bot</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiz Modal -->
+  <div class="modal" id="quizModal">
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3>Quiz</h3>
+        <button class="modal__close">&times;</button>
+      </div>
+      <!-- Quiz content will be loaded dynamically -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <h3>🌱 Agri-Bot</h3>
+          <p>Empowering farmers with smart agricultural solutions.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
+          </div>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="resources.html">Farm Tools</a></li>
+            <li><a href="sustainable.html">Sustainable Farming</a></li>
+            <li><a href="bot.html">Agri-Bot</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Contact</h4>
+          <ul>
+            <li>📧 info@agribot.com</li>
+            <li>📞 +91 1234 567 890</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p>&copy; 2026 Agri-Bot. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/education.js"></script>
+</body>
+</html>

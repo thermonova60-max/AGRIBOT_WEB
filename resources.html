@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Farm resources and tools - weather updates, crop calendar, government schemes, and equipment guides.">
+  <title>Resources & Tools | Agri-Bot</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__logo">
+        <span>🌱 Agri-Bot</span>
+      </a>
+      
+      <div class="navbar__menu">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="about.html" class="navbar__link">About</a>
+        <a href="bot.html" class="navbar__link">Agri-Bot</a>
+        <a href="sustainable.html" class="navbar__link">Sustainable Farming</a>
+        <a href="resources.html" class="navbar__link active">Resources</a>
+        <a href="marketplace.html" class="navbar__link">Marketplace</a>
+        <a href="education.html" class="navbar__link">Education</a>
+        <a href="contact.html" class="navbar__link">Contact</a>
+      </div>
+      
+      <div class="navbar__toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="container text-center">
+      <h1>Farm <span style="color: var(--secondary);">Resources</span> & Tools</h1>
+      <p style="max-width: 600px; margin: 0 auto;">Everything you need to plan, manage, and optimize your farming operations in one place.</p>
+    </div>
+  </section>
+
+  <!-- Weather Section -->
+  <section class="section resources" id="weather">
+    <div class="container">
+      <div class="section-title">
+        <h2>🌤️ Weather Information</h2>
+        <p>Plan your farming activities based on weather conditions</p>
+      </div>
+      
+      <div class="resources__grid">
+        <div class="weather-widget">
+          <h3>Today's Weather</h3>
+          <p style="color: rgba(255,255,255,0.8); margin-bottom: 1rem;">📍 Delhi, India (Demo Data)</p>
+          <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 1rem;">
+            <div>
+              <div class="weather-widget__temp">28°C</div>
+              <div class="weather-widget__condition">Partly Cloudy</div>
+            </div>
+            <div style="font-size: 4rem;">⛅</div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;">
+            <div>
+              <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.875rem;">Humidity</p>
+              <p style="color: white; margin: 0; font-weight: 600;">65%</p>
+            </div>
+            <div>
+              <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.875rem;">Wind</p>
+              <p style="color: white; margin: 0; font-weight: 600;">12 km/h</p>
+            </div>
+            <div>
+              <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.875rem;">Rain Chance</p>
+              <p style="color: white; margin: 0; font-weight: 600;">20%</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="resource-card">
+          <div class="resource-card__icon">
+            <span style="font-size: 1.5rem;">📅</span>
+          </div>
+          <h3>5-Day Forecast</h3>
+          <div style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+              <span>Tomorrow</span><span>🌤️ 30°C</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+              <span>Wed</span><span>☀️ 32°C</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+              <span>Thu</span><span>🌧️ 26°C</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+              <span>Fri</span><span>⛅ 28°C</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+              <span>Sat</span><span>☀️ 31°C</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="resource-card">
+          <div class="resource-card__icon">
+            <span style="font-size: 1.5rem;">🌾</span>
+          </div>
+          <h3>Farming Advisory</h3>
+          <p style="margin-top: 1rem; padding: 1rem; background: #E8F5E9; border-radius: var(--radius); color: var(--primary-dark);">
+            <strong>Good day for:</strong><br>
+            ✓ Sowing winter crops<br>
+            ✓ Fertilizer application<br>
+            ✓ Harvesting mature crops
+          </p>
+          <p style="margin-top: 1rem; padding: 1rem; background: #FFF3E0; border-radius: var(--radius); color: var(--secondary-dark);">
+            <strong>Caution:</strong><br>
+            Rain expected Thursday. Plan pesticide spraying accordingly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Crop Calendar Section -->
+  <section class="section" style="background-color: var(--bg-white);">
+    <div class="container">
+      <div class="section-title">
+        <h2>🗓️ Crop Calendar</h2>
+        <p>Know the right time for sowing and harvesting different crops</p>
+      </div>
+      
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 4px 15px var(--shadow);">
+          <thead>
+            <tr style="background: var(--primary); color: white;">
+              <th style="padding: 1rem; text-align: left;">Crop</th>
+              <th style="padding: 1rem; text-align: left;">Season</th>
+              <th style="padding: 1rem; text-align: left;">Sowing Time</th>
+              <th style="padding: 1rem; text-align: left;">Harvest Time</th>
+              <th style="padding: 1rem; text-align: left;">Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 1rem;">🌾 Rice</td>
+              <td style="padding: 1rem;">Kharif</td>
+              <td style="padding: 1rem;">June - July</td>
+              <td style="padding: 1rem;">October - November</td>
+              <td style="padding: 1rem;">120-150 days</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border); background: var(--bg);">
+              <td style="padding: 1rem;">🌾 Wheat</td>
+              <td style="padding: 1rem;">Rabi</td>
+              <td style="padding: 1rem;">October - November</td>
+              <td style="padding: 1rem;">March - April</td>
+              <td style="padding: 1rem;">120-150 days</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 1rem;">🌽 Maize</td>
+              <td style="padding: 1rem;">Kharif</td>
+              <td style="padding: 1rem;">June - July</td>
+              <td style="padding: 1rem;">September - October</td>
+              <td style="padding: 1rem;">80-110 days</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border); background: var(--bg);">
+              <td style="padding: 1rem;">🥔 Potato</td>
+              <td style="padding: 1rem;">Rabi</td>
+              <td style="padding: 1rem;">October - November</td>
+              <td style="padding: 1rem;">January - March</td>
+              <td style="padding: 1rem;">90-120 days</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 1rem;">🍅 Tomato</td>
+              <td style="padding: 1rem;">All Season</td>
+              <td style="padding: 1rem;">Year-round</td>
+              <td style="padding: 1rem;">60-90 days after transplant</td>
+              <td style="padding: 1rem;">90-120 days</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border); background: var(--bg);">
+              <td style="padding: 1rem;">🧅 Onion</td>
+              <td style="padding: 1rem;">Rabi</td>
+              <td style="padding: 1rem;">November - December</td>
+              <td style="padding: 1rem;">April - May</td>
+              <td style="padding: 1rem;">130-150 days</td>
+            </tr>
+            <tr>
+              <td style="padding: 1rem;">🥒 Cucumber</td>
+              <td style="padding: 1rem;">Zaid</td>
+              <td style="padding: 1rem;">February - March</td>
+              <td style="padding: 1rem;">April - June</td>
+              <td style="padding: 1rem;">45-60 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Government Schemes Section -->
+  <section class="section" id="schemes">
+    <div class="container">
+      <div class="section-title">
+        <h2>🏛️ Government Schemes</h2>
+        <p>Financial support and benefits available for farmers</p>
+      </div>
+      
+      <div class="features__grid">
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon" style="background: var(--primary);">
+            <span style="font-size: 1.5rem;">💰</span>
+          </div>
+          <h3>PM-KISAN</h3>
+          <p>Direct income support of ₹6,000 per year to farmer families in three equal installments.</p>
+          <ul style="text-align: left; margin: 1rem 0;">
+            <li>✓ ₹2,000 every 4 months</li>
+            <li>✓ Direct bank transfer</li>
+            <li>✓ For all landholding farmers</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 0.5rem;">Learn More</a>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon" style="background: var(--secondary);">
+            <span style="font-size: 1.5rem;">🛡️</span>
+          </div>
+          <h3>PM Fasal Bima Yojana</h3>
+          <p>Crop insurance scheme to protect farmers against crop loss due to natural calamities.</p>
+          <ul style="text-align: left; margin: 1rem 0;">
+            <li>✓ Low premium (2% for Kharif)</li>
+            <li>✓ Full sum insured coverage</li>
+            <li>✓ Quick claim settlement</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 0.5rem;">Learn More</a>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon" style="background: var(--accent);">
+            <span style="font-size: 1.5rem;">💳</span>
+          </div>
+          <h3>Kisan Credit Card</h3>
+          <p>Easy access to credit for farming needs at subsidized interest rates.</p>
+          <ul style="text-align: left; margin: 1rem 0;">
+            <li>✓ Up to ₹3 lakh at 4% interest</li>
+            <li>✓ Flexible repayment</li>
+            <li>✓ No collateral up to ₹1.6 lakh</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 0.5rem;">Learn More</a>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon" style="background: #7E57C2;">
+            <span style="font-size: 1.5rem;">🌱</span>
+          </div>
+          <h3>Soil Health Card</h3>
+          <p>Free soil testing and customized recommendations for nutrient management.</p>
+          <ul style="text-align: left; margin: 1rem 0;">
+            <li>✓ Free soil testing</li>
+            <li>✓ Crop-wise recommendations</li>
+            <li>✓ Issued every 2 years</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 0.5rem;">Learn More</a>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon" style="background: #00ACC1;">
+            <span style="font-size: 1.5rem;">💧</span>
+          </div>
+          <h3>PMKSY</h3>
+          <p>Pradhan Mantri Krishi Sinchayee Yojana for irrigation and water use efficiency.</p>
+          <ul style="text-align: left; margin: 1rem 0;">
+            <li>✓ Micro irrigation subsidy</li>
+            <li>✓ 55% subsidy for small farmers</li>
+            <li>✓ Drip/sprinkler support</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 0.5rem;">Learn More</a>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-card__icon" style="background: #43A047;">
+            <span style="font-size: 1.5rem;">🛒</span>
+          </div>
+          <h3>e-NAM</h3>
+          <p>Electronic National Agriculture Market for transparent online trading.</p>
+          <ul style="text-align: left; margin: 1rem 0;">
+            <li>✓ Better price discovery</li>
+            <li>✓ Online payment</li>
+            <li>✓ Access to more buyers</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 0.5rem;">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment Guide Section -->
+  <section class="section" style="background-color: var(--bg-white);">
+    <div class="container">
+      <div class="section-title">
+        <h2>🚜 Farm Equipment Guide</h2>
+        <p>Essential tools and machinery for modern farming</p>
+      </div>
+      
+      <div class="features__grid">
+        <div class="resource-card">
+          <h3>🌱 Land Preparation</h3>
+          <ul style="margin-top: 1rem;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Tractor - Main power source</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Plough - Primary tillage</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Cultivator - Secondary tillage</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Rotavator - Fine seedbed</li>
+            <li style="padding: 0.5rem 0;">Leveler - Land leveling</li>
+          </ul>
+        </div>
+        
+        <div class="resource-card">
+          <h3>🌾 Sowing & Planting</h3>
+          <ul style="margin-top: 1rem;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Seed Drill - Row sowing</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Transplanter - Paddy planting</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Dibbler - Manual seeding</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Potato Planter - Tuber planting</li>
+            <li style="padding: 0.5rem 0;">Seed Treatment Drum</li>
+          </ul>
+        </div>
+        
+        <div class="resource-card">
+          <h3>💧 Irrigation</h3>
+          <ul style="margin-top: 1rem;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Drip Irrigation System</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Sprinkler System</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Water Pump</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Pipes & Fittings</li>
+            <li style="padding: 0.5rem 0;">Water Storage Tank</li>
+          </ul>
+        </div>
+        
+        <div class="resource-card">
+          <h3>🛡️ Plant Protection</h3>
+          <ul style="margin-top: 1rem;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Knapsack Sprayer</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Power Sprayer</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Boom Sprayer</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Duster</li>
+            <li style="padding: 0.5rem 0;">Drone Sprayer (Advanced)</li>
+          </ul>
+        </div>
+        
+        <div class="resource-card">
+          <h3>🌾 Harvesting</h3>
+          <ul style="margin-top: 1rem;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Combine Harvester</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Reaper</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Thresher</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Winnowing Fan</li>
+            <li style="padding: 0.5rem 0;">Grain Cleaner</li>
+          </ul>
+        </div>
+        
+        <div class="resource-card">
+          <h3>📦 Post-Harvest</h3>
+          <ul style="margin-top: 1rem;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Grain Dryer</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Storage Bins</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Weighing Scale</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">Grading Machine</li>
+            <li style="padding: 0.5rem 0;">Packaging Equipment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);">
+    <div class="container text-center">
+      <h2>Need More Help?</h2>
+      <p style="max-width: 600px; margin: 0 auto 2rem;">Ask our AI assistant for personalized recommendations based on your specific needs.</p>
+      <a href="bot.html" class="btn btn-primary">Chat with Agri-Bot</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <h3>🌱 Agri-Bot</h3>
+          <p>Empowering farmers with smart agricultural solutions.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
+          </div>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="education.html">Courses</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="sustainable.html">Sustainable Farming</a></li>
+            <li><a href="bot.html">Agri-Bot</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Contact</h4>
+          <ul>
+            <li>📧 info@agribot.com</li>
+            <li>📞 +91 1234 567 890</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p>&copy; 2026 Agri-Bot. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

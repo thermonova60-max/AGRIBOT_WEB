@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chat with Agri-Bot - Your AI-powered farming assistant. Get instant answers to agriculture questions.">
+  <title>Agri-Bot | AI Farming Assistant</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__logo">
+        <span>🌱 Agri-Bot</span>
+      </a>
+      
+      <div class="navbar__menu">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="about.html" class="navbar__link">About</a>
+        <a href="bot.html" class="navbar__link active">Agri-Bot</a>
+        <a href="sustainable.html" class="navbar__link">Sustainable Farming</a>
+        <a href="resources.html" class="navbar__link">Resources</a>
+        <a href="marketplace.html" class="navbar__link">Marketplace</a>
+        <a href="education.html" class="navbar__link">Education</a>
+        <a href="contact.html" class="navbar__link">Contact</a>
+      </div>
+      
+      <div class="navbar__toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Chatbot Page -->
+  <section class="chatbot-page">
+    <div class="container">
+      <div class="section-title" style="margin-bottom: 2rem;">
+        <h2>Chat with Agri-Bot</h2>
+        <p>Your 24/7 AI farming assistant - Ask anything about agriculture!</p>
+      </div>
+      
+      <div class="chat-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+          <div class="chat-header__avatar">
+            <span style="font-size: 1.5rem;">🌱</span>
+          </div>
+          <div class="chat-header__info">
+            <h3>Agri-Bot</h3>
+            <span>🟢 Online - Ready to help</span>
+          </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+          <!-- Messages will be added here dynamically -->
+        </div>
+        
+        <!-- Quick Suggestions -->
+        <div class="chat-suggestions">
+          <button class="chat-suggestions__btn">How to grow tomatoes?</button>
+          <button class="chat-suggestions__btn">Best fertilizers</button>
+          <button class="chat-suggestions__btn">Pest control tips</button>
+          <button class="chat-suggestions__btn">Government schemes</button>
+          <button class="chat-suggestions__btn">Irrigation methods</button>
+          <button class="chat-suggestions__btn">Organic farming</button>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="chat-input">
+          <input type="text" id="chatInput" class="chat-input__field" placeholder="Type your farming question here..." autocomplete="off">
+          <button id="chatSend" class="chat-input__send">Send</button>
+        </div>
+      </div>
+      
+      <!-- Chat Tips -->
+      <div style="margin-top: 2rem; text-align: center;">
+        <h4 style="margin-bottom: 1rem; color: var(--primary);">💡 Tips for better responses:</h4>
+        <div class="features__grid" style="max-width: 800px; margin: 0 auto;">
+          <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); text-align: left;">
+            <strong>Be specific:</strong> Instead of "crops", ask about "best crops for summer season"
+          </div>
+          <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); text-align: left;">
+            <strong>Mention your crop:</strong> "How to control pests in rice?" gets better answers
+          </div>
+          <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); text-align: left;">
+            <strong>Ask about:</strong> Crops, weather, irrigation, pests, fertilizers, schemes
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" style="background-color: var(--bg-white);">
+    <div class="container">
+      <div class="section-title">
+        <h2>What Can Agri-Bot Help With?</h2>
+        <p>Explore the topics our AI assistant can guide you on</p>
+      </div>
+      
+      <div class="features__grid">
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">🌾</span>
+          </div>
+          <h3>Crop Information</h3>
+          <p>Get details on crop varieties, growing conditions, and best practices for different seasons.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">💧</span>
+          </div>
+          <h3>Irrigation Advice</h3>
+          <p>Learn about different irrigation methods, water management, and conservation techniques.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">🐛</span>
+          </div>
+          <h3>Pest Control</h3>
+          <p>Identify pests and diseases, and get recommendations for organic and chemical controls.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">🌿</span>
+          </div>
+          <h3>Fertilizer Guidance</h3>
+          <p>Understand soil nutrition, fertilizer types, and application methods for healthy crops.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">🏛️</span>
+          </div>
+          <h3>Government Schemes</h3>
+          <p>Learn about subsidies, loans, insurance, and other support programs for farmers.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <span style="font-size: 2rem;">📊</span>
+          </div>
+          <h3>Market Information</h3>
+          <p>Get insights on market prices, selling strategies, and connecting with buyers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <h3>🌱 Agri-Bot</h3>
+          <p>Empowering farmers with smart agricultural solutions.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
+          </div>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="education.html">Courses</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="resources.html">Farm Tools</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="sustainable.html">Sustainable Farming</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Contact</h4>
+          <ul>
+            <li>📧 info@agribot.com</li>
+            <li>📞 +91 1234 567 890</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p>&copy; 2026 Agri-Bot. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

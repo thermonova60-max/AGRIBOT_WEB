@@ -1,0 +1,347 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Organic Farming",
+    "description": "Learn the fundamentals of organic agriculture and sustainable practices for healthier crops and soil.",
+    "level": "Beginner",
+    "duration": "2 hours",
+    "lessons": 8,
+    "image": "assets/images/course-organic.jpg",
+    "topics": [
+      "What is Organic Farming?",
+      "Benefits of Organic Agriculture",
+      "Organic Certification Process",
+      "Natural Fertilizers and Composting",
+      "Crop Rotation Techniques",
+      "Organic Pest Management",
+      "Marketing Organic Produce",
+      "Case Studies and Success Stories"
+    ],
+    "quiz": {
+      "title": "Organic Farming Quiz",
+      "questions": [
+        {
+          "question": "What is the main principle of organic farming?",
+          "options": ["Use of chemical fertilizers", "Working with natural systems", "Maximizing yield at any cost", "Using GMO seeds"],
+          "correct": 1
+        },
+        {
+          "question": "Which of these is an organic fertilizer?",
+          "options": ["Urea", "DAP", "Vermicompost", "NPK 10-26-26"],
+          "correct": 2
+        },
+        {
+          "question": "What is crop rotation?",
+          "options": ["Rotating crops in different fields", "Growing same crop every year", "Growing different crops in sequence on same land", "Rotating irrigation system"],
+          "correct": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": "Water Management & Irrigation",
+    "description": "Master efficient irrigation techniques and water conservation methods for sustainable farming.",
+    "level": "Intermediate",
+    "duration": "3 hours",
+    "lessons": 12,
+    "image": "assets/images/course-water.jpg",
+    "topics": [
+      "Understanding Water Requirements",
+      "Types of Irrigation Systems",
+      "Drip Irrigation Setup",
+      "Sprinkler Systems",
+      "Rainwater Harvesting",
+      "Water Conservation Techniques",
+      "Mulching for Moisture Retention",
+      "Irrigation Scheduling",
+      "Water Quality Management",
+      "Government Schemes for Irrigation",
+      "Cost-Benefit Analysis",
+      "Maintenance and Troubleshooting"
+    ],
+    "quiz": {
+      "title": "Irrigation Quiz",
+      "questions": [
+        {
+          "question": "Which irrigation method has the highest efficiency?",
+          "options": ["Flood irrigation", "Sprinkler", "Drip irrigation", "Furrow irrigation"],
+          "correct": 2
+        },
+        {
+          "question": "Best time to irrigate crops is:",
+          "options": ["Afternoon", "Early morning", "Midnight", "Noon"],
+          "correct": 1
+        },
+        {
+          "question": "Mulching helps in:",
+          "options": ["Increasing evaporation", "Reducing moisture loss", "Increasing weeds", "None of the above"],
+          "correct": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": "Pest & Disease Management",
+    "description": "Identify common pests and diseases, and learn integrated pest management strategies.",
+    "level": "Intermediate",
+    "duration": "4 hours",
+    "lessons": 15,
+    "image": "assets/images/course-pest.jpg",
+    "topics": [
+      "Introduction to IPM",
+      "Common Crop Pests",
+      "Identifying Pest Damage",
+      "Plant Diseases Overview",
+      "Fungal Diseases",
+      "Bacterial and Viral Diseases",
+      "Biological Control Methods",
+      "Natural Pesticides",
+      "Chemical Control (When Necessary)",
+      "Preventive Measures",
+      "Resistant Varieties",
+      "Record Keeping",
+      "Safety Precautions",
+      "Regulatory Compliance",
+      "Future of Pest Management"
+    ],
+    "quiz": {
+      "title": "Pest Management Quiz",
+      "questions": [
+        {
+          "question": "IPM stands for:",
+          "options": ["Intensive Pest Management", "Integrated Pest Management", "Internal Pest Monitor", "Insect Prevention Method"],
+          "correct": 1
+        },
+        {
+          "question": "Neem oil is used as:",
+          "options": ["Fertilizer", "Natural pesticide", "Growth hormone", "Irrigation additive"],
+          "correct": 1
+        },
+        {
+          "question": "Biological pest control uses:",
+          "options": ["Chemicals", "Natural predators", "Fire", "Flooding"],
+          "correct": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "title": "Soil Health & Fertility",
+    "description": "Understand soil composition and learn to maintain optimal soil health for better yields.",
+    "level": "Beginner",
+    "duration": "2.5 hours",
+    "lessons": 10,
+    "image": "assets/images/course-soil.jpg",
+    "topics": [
+      "Soil Types and Properties",
+      "Soil Testing Methods",
+      "Understanding Soil pH",
+      "Macro and Micronutrients",
+      "Organic Matter Importance",
+      "Composting Techniques",
+      "Green Manuring",
+      "Cover Crops",
+      "Soil Erosion Prevention",
+      "Long-term Soil Management"
+    ],
+    "quiz": {
+      "title": "Soil Health Quiz",
+      "questions": [
+        {
+          "question": "What pH is considered neutral for soil?",
+          "options": ["5", "7", "9", "11"],
+          "correct": 1
+        },
+        {
+          "question": "NPK stands for:",
+          "options": ["Nitrogen, Potash, Calcium", "Nitrogen, Phosphorus, Potassium", "Natural Plant Nutrients", "None of these"],
+          "correct": 1
+        },
+        {
+          "question": "Soil testing should be done:",
+          "options": ["Never", "Once in lifetime", "Every 2-3 years", "Every month"],
+          "correct": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "title": "Modern Farming Technologies",
+    "description": "Explore precision agriculture, drones, IoT, and smart farming solutions for the future.",
+    "level": "Advanced",
+    "duration": "5 hours",
+    "lessons": 18,
+    "image": "assets/images/course-tech.jpg",
+    "topics": [
+      "Introduction to AgriTech",
+      "Precision Agriculture Basics",
+      "GPS and GIS in Farming",
+      "Drones for Agriculture",
+      "Sensors and IoT",
+      "Smart Irrigation Systems",
+      "Weather Monitoring",
+      "Farm Management Software",
+      "Mobile Apps for Farmers",
+      "Automated Machinery",
+      "Greenhouse Technology",
+      "Hydroponics and Vertical Farming",
+      "Data Analytics in Agriculture",
+      "AI and Machine Learning",
+      "Blockchain in Agriculture",
+      "Government Digital Initiatives",
+      "Cost and ROI Analysis",
+      "Future Trends"
+    ],
+    "quiz": {
+      "title": "AgriTech Quiz",
+      "questions": [
+        {
+          "question": "Precision agriculture uses:",
+          "options": ["Traditional methods only", "GPS and sensors", "Manual labor only", "No technology"],
+          "correct": 1
+        },
+        {
+          "question": "Drones in agriculture are used for:",
+          "options": ["Entertainment", "Crop monitoring and spraying", "Transportation", "None"],
+          "correct": 1
+        },
+        {
+          "question": "IoT in farming helps with:",
+          "options": ["Social media", "Real-time monitoring", "Email", "Gaming"],
+          "correct": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "title": "Post-Harvest Management",
+    "description": "Learn proper storage, processing, and value addition techniques to maximize profits.",
+    "level": "Intermediate",
+    "duration": "3 hours",
+    "lessons": 11,
+    "image": "assets/images/course-harvest.jpg",
+    "topics": [
+      "Harvest Timing and Methods",
+      "Post-Harvest Handling",
+      "Cleaning and Grading",
+      "Storage Principles",
+      "Grain Storage Structures",
+      "Cold Storage for Perishables",
+      "Pest Control in Storage",
+      "Value Addition Opportunities",
+      "Processing Technologies",
+      "Packaging and Labeling",
+      "Market Linkages"
+    ],
+    "quiz": {
+      "title": "Post-Harvest Quiz",
+      "questions": [
+        {
+          "question": "Proper grain storage requires:",
+          "options": ["High moisture", "Low moisture and pest control", "Open containers", "Direct sunlight"],
+          "correct": 1
+        },
+        {
+          "question": "Value addition means:",
+          "options": ["Selling raw produce", "Processing to increase value", "Throwing away excess", "None"],
+          "correct": 1
+        },
+        {
+          "question": "Cold storage is used for:",
+          "options": ["Grains", "Perishable produce", "Seeds", "Fertilizers"],
+          "correct": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "title": "Government Schemes for Farmers",
+    "description": "Comprehensive guide to agricultural subsidies, loans, and support programs available for farmers.",
+    "level": "Beginner",
+    "duration": "2 hours",
+    "lessons": 9,
+    "image": "assets/images/course-govt.jpg",
+    "topics": [
+      "PM-KISAN Scheme",
+      "PM Fasal Bima Yojana",
+      "Kisan Credit Card",
+      "Soil Health Card Scheme",
+      "PMKSY - Irrigation",
+      "Organic Farming Schemes",
+      "Agricultural Marketing",
+      "e-NAM Portal",
+      "How to Apply"
+    ],
+    "quiz": {
+      "title": "Government Schemes Quiz",
+      "questions": [
+        {
+          "question": "PM-KISAN provides:",
+          "options": ["Free seeds", "₹6000 per year", "Free equipment", "Insurance"],
+          "correct": 1
+        },
+        {
+          "question": "e-NAM is:",
+          "options": ["Email service", "Online trading platform for farmers", "Social media", "Weather app"],
+          "correct": 1
+        },
+        {
+          "question": "Kisan Credit Card offers:",
+          "options": ["Free education", "Agricultural loans", "Free tractors", "Land allocation"],
+          "correct": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": "Climate-Smart Agriculture",
+    "description": "Adapt your farming practices to climate change and build resilience for the future.",
+    "level": "Advanced",
+    "duration": "4 hours",
+    "lessons": 14,
+    "image": "assets/images/course-climate.jpg",
+    "topics": [
+      "Understanding Climate Change",
+      "Impact on Agriculture",
+      "Climate-Smart Practices",
+      "Drought-Resistant Varieties",
+      "Flood Management",
+      "Agroforestry",
+      "Carbon Sequestration",
+      "Renewable Energy in Farming",
+      "Weather Forecasting Tools",
+      "Risk Management",
+      "Insurance Options",
+      "Sustainable Intensification",
+      "Community Adaptation",
+      "Future Outlook"
+    ],
+    "quiz": {
+      "title": "Climate-Smart Agriculture Quiz",
+      "questions": [
+        {
+          "question": "Climate-smart agriculture aims to:",
+          "options": ["Increase emissions", "Adapt to climate change", "Ignore weather patterns", "Use more chemicals"],
+          "correct": 1
+        },
+        {
+          "question": "Agroforestry combines:",
+          "options": ["Only crops", "Trees with agriculture", "Only animals", "Only machines"],
+          "correct": 1
+        },
+        {
+          "question": "Drought-resistant varieties help in:",
+          "options": ["Flood areas", "Water-scarce conditions", "Cold regions", "None"],
+          "correct": 1
+        }
+      ]
+    }
+  }
+]

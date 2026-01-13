@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Agri-Bot team - Get in touch for support, feedback, or partnership inquiries.">
+  <title>Contact Us | Agri-Bot</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <style>
+    .form-group input.error,
+    .form-group textarea.error {
+      border-color: #e74c3c;
+    }
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__logo">
+        <span>🌱 Agri-Bot</span>
+      </a>
+      
+      <div class="navbar__menu">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="about.html" class="navbar__link">About</a>
+        <a href="bot.html" class="navbar__link">Agri-Bot</a>
+        <a href="sustainable.html" class="navbar__link">Sustainable Farming</a>
+        <a href="resources.html" class="navbar__link">Resources</a>
+        <a href="marketplace.html" class="navbar__link">Marketplace</a>
+        <a href="education.html" class="navbar__link">Education</a>
+        <a href="contact.html" class="navbar__link active">Contact</a>
+      </div>
+      
+      <div class="navbar__toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="container text-center">
+      <h1>Get in <span style="color: var(--secondary);">Touch</span></h1>
+      <p style="max-width: 600px; margin: 0 auto;">Have questions, feedback, or want to partner with us? We'd love to hear from you!</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact">
+    <div class="container">
+      <div class="contact__grid">
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h3 style="margin-bottom: 1.5rem;">Send us a Message</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a topic</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="feedback">Feedback</option>
+                <option value="partnership">Partnership</option>
+                <option value="marketplace">Marketplace Inquiry</option>
+                <option value="education">Education/Courses</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          
+          <div class="contact-info__item">
+            <div class="contact-info__icon">
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Address</h4>
+              <p style="margin: 0; color: var(--text-light);">Agricultural Innovation Hub<br>New Delhi, India 110001</p>
+            </div>
+          </div>
+          
+          <div class="contact-info__item">
+            <div class="contact-info__icon">
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p style="margin: 0;"><a href="mailto:info@agribot.com" style="color: var(--primary);">info@agribot.com</a></p>
+              <p style="margin: 0;"><a href="mailto:support@agribot.com" style="color: var(--primary);">support@agribot.com</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-info__item">
+            <div class="contact-info__icon">
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <p style="margin: 0;"><a href="tel:+911234567890" style="color: var(--primary);">+91 1234 567 890</a></p>
+              <p style="margin: 0; color: var(--text-light); font-size: 0.875rem;">Mon-Sat: 9AM - 6PM IST</p>
+            </div>
+          </div>
+          
+          <div class="contact-info__item">
+            <div class="contact-info__icon" style="background: var(--secondary);">
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Quick Response</h4>
+              <p style="margin: 0; color: var(--text-light);">We typically respond within 24 hours on business days.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" style="background-color: var(--bg-white);">
+    <div class="container">
+      <div class="section-title">
+        <h2>❓ Frequently Asked Questions</h2>
+        <p>Quick answers to common questions</p>
+      </div>
+      
+      <div class="accordion" style="max-width: 800px; margin: 0 auto;">
+        <div class="accordion__item">
+          <button class="accordion__header">
+            Is Agri-Bot really free to use?
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__body">
+              <p>Yes! All our educational content, courses, and the AI chatbot are completely free. Our marketplace charges only for products purchased, with no subscription or hidden fees.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion__item">
+          <button class="accordion__header">
+            How do I use the Agri-Bot chatbot?
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__body">
+              <p>Simply visit our Agri-Bot page and type your farming question in the chat box. You can ask about crops, irrigation, pests, fertilizers, government schemes, and more. The bot responds instantly with helpful information.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion__item">
+          <button class="accordion__header">
+            Can I earn certificates from the courses?
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__body">
+              <p>Yes! Each course has a quiz at the end. Score 70% or higher to earn a certificate of completion. You can download and share your certificates as proof of your learning.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion__item">
+          <button class="accordion__header">
+            Is the marketplace available in my area?
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__body">
+              <p>Currently, our marketplace serves customers across India. Delivery times and availability may vary by location. Check specific product pages for delivery information to your pin code.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion__item">
+          <button class="accordion__header">
+            How can I become a seller on the marketplace?
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__body">
+              <p>We're always looking for quality suppliers! Contact us through the form above with subject "Partnership" and tell us about your products. Our team will review your application and get back to you.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion__item">
+          <button class="accordion__header">
+            Is there a mobile app available?
+            <span class="accordion__icon">▼</span>
+          </button>
+          <div class="accordion__content">
+            <div class="accordion__body">
+              <p>Our website is fully mobile-responsive and works great on all devices. A dedicated mobile app is currently in development and will be available soon. Sign up for our newsletter to be notified when it launches!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white;">
+    <div class="container text-center">
+      <h2 style="color: white;">Subscribe to Our Newsletter</h2>
+      <p style="max-width: 600px; margin: 0 auto 2rem; color: rgba(255,255,255,0.9);">Get farming tips, new course announcements, and marketplace deals delivered to your inbox.</p>
+      <form id="newsletterForm" style="max-width: 500px; margin: 0 auto; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <input type="email" placeholder="Enter your email address" required 
+               style="flex: 1; min-width: 200px; padding: 0.75rem 1rem; border: none; border-radius: var(--radius); font-size: 1rem;">
+        <button type="submit" class="btn btn-secondary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <h3>🌱 Agri-Bot</h3>
+          <p>Empowering farmers with smart agricultural solutions.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
+          </div>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="education.html">Courses</a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="resources.html">Farm Tools</a></li>
+            <li><a href="sustainable.html">Sustainable Farming</a></li>
+            <li><a href="bot.html">Agri-Bot</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer__links">
+          <h4>Contact</h4>
+          <ul>
+            <li>📧 info@agribot.com</li>
+            <li>📞 +91 1234 567 890</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer__bottom">
+        <p>&copy; 2026 Agri-Bot. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Contact Form Handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (validateForm(this)) {
+        showFormMessage(this, 'Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+        this.reset();
+      }
+    });
+    
+    // Newsletter Form Handling
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for subscribing! You\'ll receive our newsletter soon.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
