@@ -217,8 +217,10 @@ class Marketplace {
     
     this.productsGrid.innerHTML = filtered.map(product => `
       <div class="product-card" data-id="${product.id}">
-        <img src="${product.image}" alt="${product.name}" class="product-card__image" 
-             onerror="this.src='assets/images/placeholder.jpg'">
+        <div class="product-card__image-wrapper">
+          <img src="${product.image}" alt="${product.name}" class="product-card__image" 
+               onerror="this.style.display='none'">
+        </div>
         <div class="product-card__content">
           <span class="product-card__category">${product.category}</span>
           <h3 class="product-card__title">${product.name}</h3>

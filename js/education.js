@@ -261,8 +261,10 @@ class Education {
       
       return `
         <div class="course-card" data-id="${course.id}">
-          <img src="${course.image}" alt="${course.title}" class="course-card__image"
-               onerror="this.src='assets/images/placeholder.jpg'">
+          <div class="course-card__image-wrapper">
+            <img src="${course.image}" alt="${course.title}" class="course-card__image"
+                 onerror="this.style.display='none'">
+          </div>
           <div class="course-card__content">
             <span class="course-card__level">${course.level}</span>
             <h3 class="course-card__title">${course.title}</h3>
