@@ -1,6 +1,6 @@
 /**
  * Agri-Bot - Enhanced Chatbot JavaScript
- * Advanced keyword-based response engine with extensive knowledge base
+ * Powered by Google Gemini AI with agricultural knowledge base
  */
 
 class AgriChatbot {
@@ -12,6 +12,10 @@ class AgriChatbot {
     this.faqData = [];
     this.conversationContext = [];
     this.userName = localStorage.getItem('agribot_user') || '';
+    
+    // Gemini API Configuration
+    this.GEMINI_API_KEY = 'AIzaSyD0KipHg9M5zeO6-jTnEq8vIpbp6lbW2EM';
+    this.GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
     
     this.init();
   }
@@ -355,27 +359,108 @@ class AgriChatbot {
     }
   }
   
-  processMessage(message) {
+  async processMessage(message) {
     this.showTypingIndicator();
     
-    // Variable delay based on response length
-    const baseDelay = 800;
-    const additionalDelay = Math.random() * 1200;
-    
-    setTimeout(() => {
+    // Use Gemini AI for all responses
+    try {
+      const aiResponse = await this.getGeminiResponse(message);
       this.hideTypingIndicator();
-      const response = this.findResponse(message);
-      this.addMessage(response, 'bot');
-      this.conversationContext.push({ role: 'bot', content: response });
+      this.addMessage(aiResponse, 'bot');
+      this.conversationContext.push({ role: 'assistant', content: aiResponse });
+    } catch (error) {
+      console.error('Gemini API error:', error);
+      this.hideTypingIndicator();
       
-      // Keep context manageable
-      if (this.conversationContext.length > 10) {
-        this.conversationContext = this.conversationContext.slice(-10);
+      // Fallback to keyword-based response if API fails
+      const keywordResponse = this.findKeywordResponse(message);
+      if (keywordResponse) {
+        this.addMessage(keywordResponse, 'bot');
+      } else {
+        this.addMessage("I'm having trouble connecting to my AI brain right now. 🌱 Please check your internet connection and try again!", 'bot');
       }
-    }, baseDelay + additionalDelay);
+    }
+    
+    // Keep context manageable
+    if (this.conversationContext.length > 20) {
+      this.conversationContext = this.conversationContext.slice(-20);
+    }
   }
   
-  findResponse(message) {
+  async getGeminiResponse(userMessage) {
+    const systemPrompt = `You are Agri-Bot, an expert AI agricultural assistant for Indian farmers. You provide helpful, accurate, and practical farming advice.
+
+Your expertise includes:
+- Crop cultivation (rice, wheat, vegetables, fruits, cotton, sugarcane, etc.)
+- Irrigation and water management
+- Fertilizers and soil health
+- Pest and disease management (IPM)
+- Organic and natural farming
+- Government schemes (PM-KISAN, KCC, PMFBY, PKVY, etc.)
+- Market prices and selling strategies
+- Farm equipment and mechanization
+- Livestock and dairy farming
+- Weather and climate-smart agriculture
+
+Guidelines:
+- Give practical, actionable advice
+- Use simple language farmers can understand
+- Include specific numbers (yields, rates, timings) when relevant
+- Mention relevant government schemes and subsidies
+- Use emojis to make responses friendly 🌾🌱💧
+- Keep responses concise but informative
+- If asked about non-agricultural topics, politely redirect to farming topics
+- Provide India-specific advice (crops, seasons, schemes)
+
+Previous conversation context:
+${this.conversationContext.slice(-6).map(msg => `${msg.role}: ${msg.content}`).join('\n')}`;
+
+    const requestBody = {
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: systemPrompt + '\n\nUser question: ' + userMessage }]
+        }
+      ],
+      generationConfig: {
+        temperature: 0.7,
+        topK: 40,
+        topP: 0.95,
+        maxOutputTokens: 1024,
+      },
+      safetySettings: [
+        { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+        { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+        { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+        { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' }
+      ]
+    };
+
+    const response = await fetch(`${this.GEMINI_API_URL}?key=${this.GEMINI_API_KEY}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error('API Error Details:', errorData);
+      throw new Error(`API request failed: ${response.status} - ${JSON.stringify(errorData)}`);
+    }
+
+    const data = await response.json();
+    console.log('Gemini Response:', data);
+    
+    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+      return data.candidates[0].content.parts[0].text;
+    }
+    
+    throw new Error('Invalid response format');
+  }
+  
+  findKeywordResponse(message) {
     const lowerMessage = message.toLowerCase();
     
     // Check for exact matches first
@@ -388,13 +473,12 @@ class AgriChatbot {
     }
     
     // Fuzzy matching for common misspellings
-    const fuzzyMatches = this.fuzzyMatch(lowerMessage);
-    if (fuzzyMatches) {
-      return fuzzyMatches;
-    }
-    
-    // Default response if no keyword match
-    return this.getContextualDefaultResponse();
+    return this.fuzzyMatch(lowerMessage);
+  }
+  
+  findResponse(message) {
+    // Legacy method - now calls findKeywordResponse
+    return this.findKeywordResponse(message);
   }
   
   fuzzyMatch(message) {
