@@ -1,6 +1,6 @@
 /**
  * Agri-Bot - Enhanced Chatbot JavaScript
- * Powered by Google Gemini AI with agricultural knowledge base
+ * Powered by Hugging Face AI with agricultural knowledge base
  */
 
 class AgriChatbot {
@@ -12,10 +12,6 @@ class AgriChatbot {
     this.faqData = [];
     this.conversationContext = [];
     this.userName = localStorage.getItem('agribot_user') || '';
-    
-    // Gemini API Configuration
-    this.GEMINI_API_KEY = 'AIzaSyD0KipHg9M5zeO6-jTnEq8vIpbp6lbW2EM';
-    this.GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
     
     this.init();
   }
@@ -362,14 +358,12 @@ class AgriChatbot {
   async processMessage(message) {
     this.showTypingIndicator();
     
-    // Use Gemini AI for all responses
+    // Use streaming AI response
     try {
-      const aiResponse = await this.getGeminiResponse(message);
-      this.hideTypingIndicator();
-      this.addMessage(aiResponse, 'bot');
+      const aiResponse = await this.getStreamingResponse(message);
       this.conversationContext.push({ role: 'assistant', content: aiResponse });
     } catch (error) {
-      console.error('Gemini API error:', error);
+      console.error('AI API error:', error);
       this.hideTypingIndicator();
       
       // Fallback to keyword-based response if API fails
@@ -377,7 +371,7 @@ class AgriChatbot {
       if (keywordResponse) {
         this.addMessage(keywordResponse, 'bot');
       } else {
-        this.addMessage("I'm having trouble connecting to my AI brain right now. 🌱 Please check your internet connection and try again!", 'bot');
+        this.addMessage("I'm having trouble connecting to my AI brain right now. 🌱 Please check if Ollama is running and try again!", 'bot');
       }
     }
     
@@ -386,75 +380,89 @@ class AgriChatbot {
       this.conversationContext = this.conversationContext.slice(-20);
     }
   }
-  
-  async getGeminiResponse(userMessage) {
-    const systemPrompt = `You are Agri-Bot, an expert AI agricultural assistant for Indian farmers. You provide helpful, accurate, and practical farming advice.
 
-Your expertise includes:
-- Crop cultivation (rice, wheat, vegetables, fruits, cotton, sugarcane, etc.)
-- Irrigation and water management
-- Fertilizers and soil health
-- Pest and disease management (IPM)
-- Organic and natural farming
-- Government schemes (PM-KISAN, KCC, PMFBY, PKVY, etc.)
-- Market prices and selling strategies
-- Farm equipment and mechanization
-- Livestock and dairy farming
-- Weather and climate-smart agriculture
+  async getStreamingResponse(userMessage) {
+    // Create a message div for streaming
+    this.hideTypingIndicator();
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message message--bot';
+    messageDiv.innerHTML = '';
+    this.messagesContainer.appendChild(messageDiv);
+    this.scrollToBottom();
 
-Guidelines:
-- Give practical, actionable advice
-- Use simple language farmers can understand
-- Include specific numbers (yields, rates, timings) when relevant
-- Mention relevant government schemes and subsidies
-- Use emojis to make responses friendly 🌾🌱💧
-- Keep responses concise but informative
-- If asked about non-agricultural topics, politely redirect to farming topics
-- Provide India-specific advice (crops, seasons, schemes)
+    let fullResponse = '';
 
-Previous conversation context:
-${this.conversationContext.slice(-6).map(msg => `${msg.role}: ${msg.content}`).join('\n')}`;
-
-    const requestBody = {
-      contents: [
-        {
-          role: 'user',
-          parts: [{ text: systemPrompt + '\n\nUser question: ' + userMessage }]
-        }
-      ],
-      generationConfig: {
-        temperature: 0.7,
-        topK: 40,
-        topP: 0.95,
-        maxOutputTokens: 1024,
-      },
-      safetySettings: [
-        { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-        { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-        { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-        { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' }
-      ]
-    };
-
-    const response = await fetch(`${this.GEMINI_API_URL}?key=${this.GEMINI_API_KEY}`, {
+    const response = await fetch('http://localhost:3000/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify({
+        message: userMessage,
+        conversationContext: this.conversationContext.slice(-6)
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.status}`);
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n').filter(line => line.startsWith('data: '));
+
+      for (const line of lines) {
+        try {
+          const data = JSON.parse(line.slice(6));
+          if (data.token) {
+            fullResponse += data.token;
+            messageDiv.innerHTML = this.formatMessage(fullResponse);
+            this.scrollToBottom();
+          }
+          if (data.error) {
+            throw new Error(data.error);
+          }
+        } catch (e) {
+          if (e.message !== 'Unexpected end of JSON input') {
+            console.error('Parse error:', e);
+          }
+        }
+      }
+    }
+
+    return fullResponse;
+  }
+  
+  async getGeminiResponse(userMessage) {
+    // Call local server endpoint instead of Hugging Face directly
+    const response = await fetch('http://localhost:3000/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: userMessage,
+        conversationContext: this.conversationContext.slice(-6)
+      })
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      console.error('API Error Details:', errorData);
-      throw new Error(`API request failed: ${response.status} - ${JSON.stringify(errorData)}`);
+      console.error('API Error:', errorData);
+      throw new Error(`API request failed: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('Gemini Response:', data);
+    console.log('Server Response:', data);
     
-    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-      return data.candidates[0].content.parts[0].text;
+    if (data.response) {
+      return data.response;
     }
     
     throw new Error('Invalid response format');
