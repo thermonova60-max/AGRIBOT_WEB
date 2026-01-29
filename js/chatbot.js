@@ -1,6 +1,6 @@
 /**
  * Agri-Bot - Enhanced Chatbot JavaScript
- * Powered by Hugging Face AI with agricultural knowledge base
+ * Powered by Groq AI (Llama 3.1 8B) with agricultural knowledge base
  */
 
 class AgriChatbot {
@@ -12,6 +12,11 @@ class AgriChatbot {
     this.faqData = [];
     this.conversationContext = [];
     this.userName = localStorage.getItem('agribot_user') || '';
+    
+    // Groq API Configuration
+    this.GROQ_API_KEY = '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';
+    this.GROQ_MODEL = 'llama-3.1-8b-instant';
+    this.GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
     
     this.init();
   }
@@ -358,12 +363,14 @@ class AgriChatbot {
   async processMessage(message) {
     this.showTypingIndicator();
     
-    // Use streaming AI response
+    // Use Groq AI API (works on GitHub Pages!)
     try {
-      const aiResponse = await this.getStreamingResponse(message);
+      const aiResponse = await this.getGroqResponse(message);
+      this.hideTypingIndicator();
+      this.addMessage(aiResponse, 'bot');
       this.conversationContext.push({ role: 'assistant', content: aiResponse });
     } catch (error) {
-      console.error('AI API error:', error);
+      console.error('Groq API error:', error);
       this.hideTypingIndicator();
       
       // Fallback to keyword-based response if API fails
@@ -371,7 +378,7 @@ class AgriChatbot {
       if (keywordResponse) {
         this.addMessage(keywordResponse, 'bot');
       } else {
-        this.addMessage("I'm having trouble connecting to my AI brain right now. 🌱 Please check if Ollama is running and try again!", 'bot');
+        this.addMessage("I'm having trouble connecting right now. 🌱 Please try again in a moment!", 'bot');
       }
     }
     
@@ -381,91 +388,56 @@ class AgriChatbot {
     }
   }
 
-  async getStreamingResponse(userMessage) {
-    // Create a message div for streaming
-    this.hideTypingIndicator();
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message message--bot';
-    messageDiv.innerHTML = '';
-    this.messagesContainer.appendChild(messageDiv);
-    this.scrollToBottom();
+  async getGroqResponse(userMessage) {
+    const systemPrompt = `You are Agri-Bot, an expert AI assistant specialized in agriculture and farming. You help Indian farmers with:
+- Crop cultivation techniques (rice, wheat, vegetables, fruits, cotton, sugarcane)
+- Irrigation and water management (drip, sprinkler, flood irrigation)
+- Pest and disease control (organic and chemical methods)
+- Organic farming and sustainable practices
+- Government schemes and subsidies (PM-KISAN, Kisan Credit Card, etc.)
+- Market prices and selling strategies
+- Soil health and fertilizer management
+- Livestock and dairy farming
 
-    let fullResponse = '';
+Always be helpful, practical, and encouraging. Use emojis to make responses friendly. Provide specific, actionable advice. Keep responses concise but informative. If you don't know something, suggest where the farmer can find help (like local Krishi Vigyan Kendra).`;
 
-    const response = await fetch('http://localhost:3000/api/chat', {
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      ...this.conversationContext.slice(-6),
+      { role: 'user', content: userMessage }
+    ];
+
+    const response = await fetch(this.GROQ_API_URL, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${this.GROQ_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        message: userMessage,
-        conversationContext: this.conversationContext.slice(-6)
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`API request failed: ${response.status}`);
-    }
-
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder();
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      const chunk = decoder.decode(value, { stream: true });
-      const lines = chunk.split('\n').filter(line => line.startsWith('data: '));
-
-      for (const line of lines) {
-        try {
-          const data = JSON.parse(line.slice(6));
-          if (data.token) {
-            fullResponse += data.token;
-            messageDiv.innerHTML = this.formatMessage(fullResponse);
-            this.scrollToBottom();
-          }
-          if (data.error) {
-            throw new Error(data.error);
-          }
-        } catch (e) {
-          if (e.message !== 'Unexpected end of JSON input') {
-            console.error('Parse error:', e);
-          }
-        }
-      }
-    }
-
-    return fullResponse;
-  }
-  
-  async getGeminiResponse(userMessage) {
-    // Call local server endpoint instead of Hugging Face directly
-    const response = await fetch('http://localhost:3000/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        message: userMessage,
-        conversationContext: this.conversationContext.slice(-6)
+        model: this.GROQ_MODEL,
+        messages: messages,
+        temperature: 0.7,
+        max_tokens: 1024,
       })
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      console.error('API Error:', errorData);
-      throw new Error(`API request failed: ${response.status}`);
+      throw new Error(`Groq API error: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
     }
 
     const data = await response.json();
-    console.log('Server Response:', data);
-    
-    if (data.response) {
-      return data.response;
-    }
-    
-    throw new Error('Invalid response format');
+    return data.choices[0].message.content;
+  }
+
+  async getStreamingResponse(userMessage) {
+    // Legacy method - now using getGroqResponse instead
+    return await this.getGroqResponse(userMessage);
+  }
+  
+  async getGeminiResponse(userMessage) {
+    // Legacy method - now using Groq API instead
+    return await this.getGroqResponse(userMessage);
   }
   
   findKeywordResponse(message) {
