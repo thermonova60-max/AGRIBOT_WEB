@@ -11,7 +11,7 @@ const PORT = 3000;
 
 // Ollama Configuration
 const OLLAMA_URL = 'http://localhost:11434/api/chat';
-const OLLAMA_MODEL = 'glm-4.7-flash';
+const OLLAMA_MODEL = 'llama3.2:3b';
 
 app.use(cors());
 app.use(express.json());
