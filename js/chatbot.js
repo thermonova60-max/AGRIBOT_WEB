@@ -380,10 +380,8 @@ class AgriChatbot {
         // Use Ollama with streaming for localhost
         aiResponse = await this.getOllamaResponse(message);
       } else {
-        // Use Groq API for remote users (ngrok/GitHub)
-        aiResponse = await this.getGroqResponse(message);
-        this.hideTypingIndicator();
-        this.addMessage(aiResponse, 'bot');
+        // Use Groq API with streaming for remote users (ngrok/GitHub)
+        aiResponse = await this.getGroqStreamingResponse(message);
       }
       this.conversationContext.push({ role: 'assistant', content: aiResponse });
     } catch (error) {
@@ -473,7 +471,7 @@ class AgriChatbot {
     return fullResponse;
   }
 
-  async getGroqResponse(userMessage) {
+  async getGroqStreamingResponse(userMessage) {
     const systemPrompt = `You are Agri-Bot, an expert AI assistant specialized in agriculture and farming. You help Indian farmers with:
 - Crop cultivation techniques (rice, wheat, vegetables, fruits, cotton, sugarcane)
 - Irrigation and water management (drip, sprinkler, flood irrigation)
@@ -503,12 +501,91 @@ Always be helpful, practical, and encouraging. Use emojis to make responses frie
         messages: messages,
         temperature: 0.7,
         max_tokens: 1024,
+        stream: true,
       })
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(`Groq API error: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
+    }
+
+    // Create message div for streaming output
+    this.hideTypingIndicator();
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message message--bot';
+    messageDiv.innerHTML = '<span class="streaming-cursor">▊</span>';
+    this.messagesContainer.appendChild(messageDiv);
+    this.scrollToBottom();
+
+    // Handle streaming response
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let fullResponse = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n').filter(line => line.trim() !== '');
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6);
+          if (data === '[DONE]') continue;
+          
+          try {
+            const parsed = JSON.parse(data);
+            const content = parsed.choices?.[0]?.delta?.content;
+            if (content) {
+              fullResponse += content;
+              messageDiv.innerHTML = this.formatMessage(fullResponse) + '<span class="streaming-cursor">▊</span>';
+              this.scrollToBottom();
+            }
+          } catch (e) {
+            // Ignore parse errors for incomplete chunks
+          }
+        }
+      }
+    }
+
+    // Remove cursor and finalize message
+    messageDiv.innerHTML = this.formatMessage(fullResponse);
+
+    if (!fullResponse) {
+      throw new Error('Empty response from Groq');
+    }
+
+    return fullResponse;
+  }
+
+  // Non-streaming Groq fallback
+  async getGroqResponse(userMessage) {
+    const systemPrompt = `You are Agri-Bot, an expert AI assistant specialized in agriculture and farming.`;
+
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      ...this.conversationContext.slice(-6),
+      { role: 'user', content: userMessage }
+    ];
+
+    const response = await fetch(this.GROQ_API_URL, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${this.GROQ_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: this.GROQ_MODEL,
+        messages: messages,
+        temperature: 0.7,
+        max_tokens: 1024,
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Groq API error: ${response.status}`);
     }
 
     const data = await response.json();
