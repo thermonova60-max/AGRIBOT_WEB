@@ -124,7 +124,10 @@ Guidelines:
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🌾 Agri-Bot Server running at http://localhost:${PORT}`);
-  console.log(`📱 Open http://localhost:${PORT}/bot.html to use the chatbot\n`);
+// Listen on all network interfaces (0.0.0.0) to allow other devices to connect
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n🌾 Agri-Bot Server running!`);
+  console.log(`📱 Local: http://localhost:${PORT}/bot.html`);
+  console.log(`🌐 Network: http://<YOUR-IP>:${PORT}/bot.html`);
+  console.log(`   (Run 'ipconfig' to find your IP address)\n`);
 });

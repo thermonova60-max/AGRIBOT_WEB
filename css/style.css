@@ -1192,6 +1192,20 @@ img {
   30% { transform: translateY(-10px); opacity: 1; }
 }
 
+/* Streaming cursor animation */
+.streaming-cursor {
+  display: inline-block;
+  color: var(--primary);
+  animation: blink 0.7s infinite;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 .chat-suggestions {
   padding: 1rem 2rem;
   border-top: 1px solid var(--border);

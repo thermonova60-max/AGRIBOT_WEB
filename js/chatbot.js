@@ -1,6 +1,6 @@
 /**
  * Agri-Bot - Enhanced Chatbot JavaScript
- * Powered by Groq AI (Llama 3.1 8B) with agricultural knowledge base
+ * Smart AI: Ollama for localhost, Groq for remote users (ngrok/GitHub)
  */
 
 class AgriChatbot {
@@ -13,10 +13,20 @@ class AgriChatbot {
     this.conversationContext = [];
     this.userName = localStorage.getItem('agribot_user') || '';
     
-    // Groq API Configuration
+    // Detect if running locally or remotely
+    this.isLocalhost = window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1';
+    
+    // Ollama Configuration (for localhost)
+    this.OLLAMA_API_URL = `http://${window.location.host}/api/chat`;
+    this.OLLAMA_MODEL = 'llama3.2:3b';
+    
+    // Groq API Configuration (for remote users - ngrok/GitHub)
     this.GROQ_API_KEY = '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';
     this.GROQ_MODEL = 'llama-3.1-8b-instant';
     this.GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+    
+    console.log(`🌾 Agri-Bot running in ${this.isLocalhost ? 'LOCAL mode (Ollama)' : 'CLOUD mode (Groq)'}`);
     
     this.init();
   }
@@ -363,22 +373,30 @@ class AgriChatbot {
   async processMessage(message) {
     this.showTypingIndicator();
     
-    // Use Groq AI API (works on GitHub Pages!)
+    // Smart API selection: Ollama for localhost, Groq for remote (ngrok/GitHub)
     try {
-      const aiResponse = await this.getGroqResponse(message);
-      this.hideTypingIndicator();
-      this.addMessage(aiResponse, 'bot');
+      let aiResponse;
+      if (this.isLocalhost) {
+        // Use Ollama with streaming for localhost
+        aiResponse = await this.getOllamaResponse(message);
+      } else {
+        // Use Groq API for remote users (ngrok/GitHub)
+        aiResponse = await this.getGroqResponse(message);
+        this.hideTypingIndicator();
+        this.addMessage(aiResponse, 'bot');
+      }
       this.conversationContext.push({ role: 'assistant', content: aiResponse });
     } catch (error) {
-      console.error('Groq API error:', error);
+      console.error('AI API error:', error);
       this.hideTypingIndicator();
       
       // Fallback to keyword-based response if API fails
       const keywordResponse = this.findKeywordResponse(message);
       if (keywordResponse) {
         this.addMessage(keywordResponse, 'bot');
+        this.conversationContext.push({ role: 'assistant', content: keywordResponse });
       } else {
-        this.addMessage("I'm having trouble connecting right now. 🌱 Please try again in a moment!", 'bot');
+        this.addMessage("I'm having trouble connecting. 🌱 Please try again!\n\nTry asking about: crops, irrigation, fertilizers, pests, organic farming, or government schemes!", 'bot');
       }
     }
     
@@ -386,6 +404,73 @@ class AgriChatbot {
     if (this.conversationContext.length > 20) {
       this.conversationContext = this.conversationContext.slice(-20);
     }
+  }
+
+  async getOllamaResponse(userMessage) {
+    // Call local Ollama server through Node.js proxy
+    const response = await fetch(this.OLLAMA_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: userMessage,
+        conversationContext: this.conversationContext.slice(-6)
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ollama API request failed: ${response.status}`);
+    }
+
+    // Create message div for streaming output
+    this.hideTypingIndicator();
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message message--bot';
+    messageDiv.innerHTML = '<span class="streaming-cursor">▊</span>';
+    this.messagesContainer.appendChild(messageDiv);
+    this.scrollToBottom();
+
+    // Handle streaming response with live token display
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let fullResponse = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n').filter(line => line.startsWith('data: '));
+
+      for (const line of lines) {
+        try {
+          const data = JSON.parse(line.slice(6));
+          if (data.token) {
+            fullResponse += data.token;
+            // Update message with streaming tokens
+            messageDiv.innerHTML = this.formatMessage(fullResponse) + '<span class="streaming-cursor">▊</span>';
+            this.scrollToBottom();
+          }
+          if (data.error) {
+            throw new Error(data.error);
+          }
+        } catch (e) {
+          if (e.message !== 'Unexpected end of JSON input') {
+            // Ignore parse errors for incomplete chunks
+          }
+        }
+      }
+    }
+
+    // Remove cursor and finalize message
+    messageDiv.innerHTML = this.formatMessage(fullResponse);
+
+    if (!fullResponse) {
+      throw new Error('Empty response from Ollama');
+    }
+
+    return fullResponse;
   }
 
   async getGroqResponse(userMessage) {
@@ -399,7 +484,7 @@ class AgriChatbot {
 - Soil health and fertilizer management
 - Livestock and dairy farming
 
-Always be helpful, practical, and encouraging. Use emojis to make responses friendly. Provide specific, actionable advice. Keep responses concise but informative. If you don't know something, suggest where the farmer can find help (like local Krishi Vigyan Kendra).`;
+Always be helpful, practical, and encouraging. Use emojis to make responses friendly. Provide specific, actionable advice. Keep responses concise but informative.`;
 
     const messages = [
       { role: 'system', content: systemPrompt },
@@ -430,14 +515,13 @@ Always be helpful, practical, and encouraging. Use emojis to make responses frie
     return data.choices[0].message.content;
   }
 
+  // Legacy methods kept for compatibility
   async getStreamingResponse(userMessage) {
-    // Legacy method - now using getGroqResponse instead
-    return await this.getGroqResponse(userMessage);
+    return await this.getOllamaResponse(userMessage);
   }
   
   async getGeminiResponse(userMessage) {
-    // Legacy method - now using Groq API instead
-    return await this.getGroqResponse(userMessage);
+    return await this.getOllamaResponse(userMessage);
   }
   
   findKeywordResponse(message) {
