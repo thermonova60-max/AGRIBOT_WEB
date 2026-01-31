@@ -1,6 +1,6 @@
 /**
  * Agri-Bot - Enhanced Chatbot JavaScript
- * Smart AI: Ollama for localhost, Groq for remote users (ngrok/GitHub)
+ * Always uses Ollama via server proxy - works on localhost, ngrok, and Tailscale
  */
 
 class AgriChatbot {
@@ -13,20 +13,19 @@ class AgriChatbot {
     this.conversationContext = [];
     this.userName = localStorage.getItem('agribot_user') || '';
     
-    // Detect if running locally or remotely
-    this.isLocalhost = window.location.hostname === 'localhost' || 
-                       window.location.hostname === '127.0.0.1';
+    // Always use Ollama via server proxy (works on localhost, ngrok, Tailscale)
+    this.isLocalhost = true; // Force Ollama mode always
     
-    // Ollama Configuration (for localhost)
-    this.OLLAMA_API_URL = `http://${window.location.host}/api/chat`;
+    // Ollama Configuration - uses relative URL so it works from any domain
+    this.OLLAMA_API_URL = '/api/chat';
     this.OLLAMA_MODEL = 'llama3.2:3b';
     
-    // Groq API Configuration (for remote users - ngrok/GitHub)
+    // Groq API Configuration (backup - not used when server is running)
     this.GROQ_API_KEY = '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';
     this.GROQ_MODEL = 'llama-3.1-8b-instant';
     this.GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
     
-    console.log(`🌾 Agri-Bot running in ${this.isLocalhost ? 'LOCAL mode (Ollama)' : 'CLOUD mode (Groq)'}`);
+    console.log(`🌾 Agri-Bot running in OLLAMA mode (via server proxy)`);
     
     this.init();
   }

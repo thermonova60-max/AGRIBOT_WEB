@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-// Ollama Configuration
+// Ollama Configuration - localhost since Ollama runs on same machine
 const OLLAMA_URL = 'http://localhost:11434/api/chat';
 const OLLAMA_MODEL = 'llama3.2:3b';
 
@@ -124,10 +124,11 @@ Guidelines:
   }
 });
 
-// Listen on all network interfaces (0.0.0.0) to allow other devices to connect
+// Listen on all network interfaces (0.0.0.0) - Anyone can access
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`\n🌾 Agri-Bot Server running!`);
   console.log(`📱 Local: http://localhost:${PORT}/bot.html`);
   console.log(`🌐 Network: http://<YOUR-IP>:${PORT}/bot.html`);
-  console.log(`   (Run 'ipconfig' to find your IP address)\n`);
+  console.log(`🔗 Tailscale: http://100.125.225.122:${PORT}/bot.html`);
+  console.log(`\n✅ Anyone with your IP can access this server!\n`);
 });
