@@ -445,8 +445,13 @@ class AgriChatbot {
           const data = JSON.parse(line.slice(6));
           if (data.token) {
             fullResponse += data.token;
-            // Update message with streaming tokens
-            messageDiv.innerHTML = this.formatMessage(fullResponse) + '<span class="streaming-cursor">▊</span>';
+            // Update message with streaming tokens and animated cursor
+            const textSpan = messageDiv.querySelector('.message-text');
+            if (textSpan) {
+              textSpan.innerHTML = this.formatMessage(fullResponse);
+            } else {
+              messageDiv.innerHTML = '<span class="message-text">' + this.formatMessage(fullResponse) + '</span><span class="streaming-cursor"></span>';
+            }
             this.scrollToBottom();
           }
           if (data.error) {
@@ -461,7 +466,9 @@ class AgriChatbot {
     }
 
     // Remove cursor and finalize message
+    messageDiv.classList.remove('message--streaming');
     messageDiv.innerHTML = this.formatMessage(fullResponse);
+    this.messagesContainer.parentElement.classList.remove('streaming-active');
 
     if (!fullResponse) {
       throw new Error('Empty response from Ollama');

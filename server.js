@@ -9,9 +9,9 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-// Ollama Configuration - localhost since Ollama runs on same machine
+// Ollama Configuration - using Gemini 3 Flash Preview (Cloud)
 const OLLAMA_URL = 'http://localhost:11434/api/chat';
-const OLLAMA_MODEL = 'llama3.2:3b';
+const OLLAMA_MODEL = 'gemini-3-flash-preview:cloud'; // Ollama cloud-hosted Gemini
 
 app.use(cors());
 app.use(express.json());

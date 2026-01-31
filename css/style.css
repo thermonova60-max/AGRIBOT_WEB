@@ -1167,43 +1167,153 @@ img {
   align-self: flex-start;
   border: 1px solid var(--border);
   padding: 1.25rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.message--typing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(107, 203, 119, 0.2), transparent);
+  animation: typingShimmer 1.5s infinite;
+}
+
+@keyframes typingShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 .typing-indicator {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
+  padding: 4px;
 }
 
 .typing-indicator span {
-  width: 10px;
-  height: 10px;
-  background: var(--gradient-primary);
+  width: 12px;
+  height: 12px;
+  background: var(--gradient-rainbow);
+  background-size: 300% 300%;
   border-radius: 50%;
-  animation: typing 1.4s infinite ease-in-out;
+  animation: typingBounce 1.4s infinite ease-in-out, rainbowShift 3s infinite ease;
+  box-shadow: 0 2px 8px rgba(107, 203, 119, 0.4);
 }
 
-.typing-indicator span:nth-child(1) { animation-delay: 0s; }
-.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+.typing-indicator span:nth-child(1) { animation-delay: 0s, 0s; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.15s, 0.5s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.3s, 1s; }
 
-@keyframes typing {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-  30% { transform: translateY(-10px); opacity: 1; }
+@keyframes typingBounce {
+  0%, 60%, 100% { 
+    transform: translateY(0) scale(1); 
+    opacity: 0.6;
+  }
+  30% { 
+    transform: translateY(-12px) scale(1.1); 
+    opacity: 1;
+    box-shadow: 0 4px 16px rgba(107, 203, 119, 0.6);
+  }
 }
 
-/* Streaming cursor animation */
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Streaming cursor animation - Enhanced */
 .streaming-cursor {
   display: inline-block;
-  color: var(--primary);
-  animation: blink 0.7s infinite;
-  margin-left: 2px;
-  font-weight: bold;
+  width: 3px;
+  height: 1.2em;
+  background: linear-gradient(180deg, #6bcb77, #4d96ff, #9b5de5);
+  background-size: 100% 200%;
+  animation: cursorBlink 0.8s ease-in-out infinite, cursorGradient 2s ease infinite;
+  margin-left: 4px;
+  border-radius: 2px;
+  vertical-align: text-bottom;
+  box-shadow: 0 0 8px rgba(107, 203, 119, 0.8),
+              0 0 16px rgba(77, 150, 255, 0.6),
+              0 0 24px rgba(155, 93, 229, 0.4);
 }
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.3; transform: scaleY(0.8); }
+}
+
+@keyframes cursorGradient {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
+}
+
+/* Streaming text wrapper with smooth appearance */
+.streaming-text {
+  display: inline;
+}
+
+.streaming-text .new-token {
+  animation: tokenAppear 0.15s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes tokenAppear {
+  0% { opacity: 0; transform: translateY(2px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Live typing indicator pulse */
+.message--streaming {
+  position: relative;
+}
+
+.message--streaming::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: -8px;
+  width: 6px;
+  height: 6px;
+  background: var(--rainbow-green);
+  border-radius: 50%;
+  animation: livePulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--rainbow-green);
+}
+
+@keyframes livePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+/* Smooth scroll indicator for streaming */
+.streaming-active .chat-messages {
+  scroll-behavior: smooth;
+}
+
+/* Rainbow shimmer effect on streaming message */
+.message--streaming .message-text {
+  background: linear-gradient(
+    90deg,
+    var(--text) 0%,
+    var(--text) 40%,
+    var(--rainbow-green) 50%,
+    var(--text) 60%,
+    var(--text) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 
 .chat-suggestions {
