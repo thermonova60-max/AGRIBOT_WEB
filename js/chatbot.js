@@ -322,6 +322,35 @@ class AgriChatbot {
   }
   
   addMessage(text, sender) {
+    const messageWrapper = document.createElement('div');
+    messageWrapper.className = `message-wrapper message-wrapper--${sender}`;
+    
+    // Add bot avatar for bot messages
+    if (sender === 'bot') {
+      const avatar = document.createElement('div');
+      avatar.className = 'bot-avatar';
+      avatar.innerHTML = `
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="botGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#6bcb77"/>
+              <stop offset="50%" style="stop-color:#4d96ff"/>
+              <stop offset="100%" style="stop-color:#9b5de5"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="48" fill="url(#botGrad)"/>
+          <circle cx="50" cy="35" r="18" fill="white" opacity="0.9"/>
+          <circle cx="50" cy="35" r="10" fill="#2d3436"/>
+          <ellipse cx="50" cy="65" rx="25" ry="15" fill="white" opacity="0.9"/>
+          <path d="M35 62 Q50 75 65 62" stroke="#6bcb77" stroke-width="3" fill="none"/>
+          <circle cx="30" cy="30" r="5" fill="#ffd93d"/>
+          <circle cx="70" cy="30" r="5" fill="#ffd93d"/>
+          <path d="M25 15 Q50 0 75 15" stroke="#6bcb77" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+      `;
+      messageWrapper.appendChild(avatar);
+    }
+    
     const messageDiv = document.createElement('div');
     messageDiv.className = `message message--${sender}`;
     
@@ -329,11 +358,12 @@ class AgriChatbot {
     const formattedText = this.formatMessage(text);
     messageDiv.innerHTML = formattedText;
     
-    this.messagesContainer.appendChild(messageDiv);
+    messageWrapper.appendChild(messageDiv);
+    this.messagesContainer.appendChild(messageWrapper);
     this.scrollToBottom();
     
     // Add animation class
-    messageDiv.style.animation = 'messageIn 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    messageWrapper.style.animation = 'messageIn 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
   }
   
   formatMessage(text) {
@@ -347,9 +377,36 @@ class AgriChatbot {
   }
   
   showTypingIndicator() {
+    const typingWrapper = document.createElement('div');
+    typingWrapper.className = 'message-wrapper message-wrapper--bot';
+    typingWrapper.id = 'typingIndicator';
+    
+    // Add avatar
+    const avatar = document.createElement('div');
+    avatar.className = 'bot-avatar bot-avatar--typing';
+    avatar.innerHTML = `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="botGradTyping" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6bcb77"/>
+            <stop offset="50%" style="stop-color:#4d96ff"/>
+            <stop offset="100%" style="stop-color:#9b5de5"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="url(#botGradTyping)"/>
+        <circle cx="50" cy="35" r="18" fill="white" opacity="0.9"/>
+        <circle cx="50" cy="35" r="10" fill="#2d3436"/>
+        <ellipse cx="50" cy="65" rx="25" ry="15" fill="white" opacity="0.9"/>
+        <path d="M35 62 Q50 75 65 62" stroke="#6bcb77" stroke-width="3" fill="none"/>
+        <circle cx="30" cy="30" r="5" fill="#ffd93d"/>
+        <circle cx="70" cy="30" r="5" fill="#ffd93d"/>
+        <path d="M25 15 Q50 0 75 15" stroke="#6bcb77" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    `;
+    typingWrapper.appendChild(avatar);
+    
     const typingDiv = document.createElement('div');
     typingDiv.className = 'message message--typing';
-    typingDiv.id = 'typingIndicator';
     typingDiv.innerHTML = `
       <div class="typing-indicator">
         <span></span>
@@ -358,7 +415,8 @@ class AgriChatbot {
       </div>
     `;
     
-    this.messagesContainer.appendChild(typingDiv);
+    typingWrapper.appendChild(typingDiv);
+    this.messagesContainer.appendChild(typingWrapper);
     this.scrollToBottom();
   }
   
@@ -420,12 +478,41 @@ class AgriChatbot {
       throw new Error(`Ollama API request failed: ${response.status}`);
     }
 
-    // Create message div for streaming output
+    // Create message wrapper with avatar for streaming output
     this.hideTypingIndicator();
+    const messageWrapper = document.createElement('div');
+    messageWrapper.className = 'message-wrapper message-wrapper--bot';
+    
+    // Add bot avatar
+    const avatar = document.createElement('div');
+    avatar.className = 'bot-avatar';
+    avatar.innerHTML = `
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="botGradStream" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6bcb77"/>
+            <stop offset="50%" style="stop-color:#4d96ff"/>
+            <stop offset="100%" style="stop-color:#9b5de5"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="url(#botGradStream)"/>
+        <circle cx="50" cy="35" r="18" fill="white" opacity="0.9"/>
+        <circle cx="50" cy="35" r="10" fill="#2d3436"/>
+        <ellipse cx="50" cy="65" rx="25" ry="15" fill="white" opacity="0.9"/>
+        <path d="M35 62 Q50 75 65 62" stroke="#6bcb77" stroke-width="3" fill="none"/>
+        <circle cx="30" cy="30" r="5" fill="#ffd93d"/>
+        <circle cx="70" cy="30" r="5" fill="#ffd93d"/>
+        <path d="M25 15 Q50 0 75 15" stroke="#6bcb77" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    `;
+    messageWrapper.appendChild(avatar);
+    
     const messageDiv = document.createElement('div');
-    messageDiv.className = 'message message--bot';
-    messageDiv.innerHTML = '<span class="streaming-cursor">▊</span>';
-    this.messagesContainer.appendChild(messageDiv);
+    messageDiv.className = 'message message--bot message--streaming';
+    messageDiv.innerHTML = '<span class="message-text"></span><span class="streaming-cursor"></span>';
+    messageWrapper.appendChild(messageDiv);
+    this.messagesContainer.appendChild(messageWrapper);
+    this.messagesContainer.parentElement.classList.add('streaming-active');
     this.scrollToBottom();
 
     // Handle streaming response with live token display

@@ -1145,30 +1145,91 @@ img {
   }
 }
 
+/* Message wrapper for avatar + message layout */
+.message-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  max-width: 85%;
+}
+
+.message-wrapper--bot {
+  align-self: flex-start;
+}
+
+.message-wrapper--user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* Bot Avatar */
+.bot-avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(107, 203, 119, 0.3);
+  animation: avatarPulse 3s ease-in-out infinite;
+}
+
+.bot-avatar svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes avatarPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(107, 203, 119, 0.3); }
+  50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(107, 203, 119, 0.5); }
+}
+
 .message--bot {
   background: var(--bg-card);
-  align-self: flex-start;
   border: 1px solid var(--border);
   border-bottom-left-radius: 6px;
   box-shadow: 0 2px 8px var(--shadow);
   color: var(--text);
+  flex: 1;
+  max-width: 100%;
 }
 
 .message--user {
   background: var(--gradient-primary);
   color: white;
-  align-self: flex-end;
   border-bottom-right-radius: 6px;
   box-shadow: 0 4px 12px var(--shadow-glow);
 }
 
+/* Emoji styling - make emojis display properly inline */
+.message .emoji,
+.message img.emoji {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.2em;
+  display: inline;
+}
+
+/* Typing avatar animation */
+.bot-avatar--typing {
+  animation: avatarThinking 1.5s ease-in-out infinite;
+}
+
+@keyframes avatarThinking {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(-3deg); }
+  75% { transform: scale(1.05) rotate(3deg); }
+}
+
 .message--typing {
   background: var(--bg-card);
-  align-self: flex-start;
   border: 1px solid var(--border);
   padding: 1.25rem 1.5rem;
   position: relative;
   overflow: hidden;
+  flex: 1;
 }
 
 .message--typing::before {
