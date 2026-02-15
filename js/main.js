@@ -572,7 +572,7 @@ function checkAuthStatus() {
 
 function updateUIForLoggedInUser(user) {
   const authBtns = document.querySelector('.navbar__auth-btns');
-  const userDropdown = document.querySelector('.navbar__user');
+  const userDropdown = document.querySelector('.user-dropdown');
   
   // Hide login/signup buttons
   if (authBtns) {
@@ -581,7 +581,6 @@ function updateUIForLoggedInUser(user) {
   
   // Show user dropdown or create it
   if (userDropdown) {
-    userDropdown.classList.add('logged-in');
     const avatar = userDropdown.querySelector('.navbar__user-avatar');
     const nameEl = userDropdown.querySelector('.navbar__user-name');
     
@@ -602,16 +601,15 @@ function createUserDropdown(user) {
   if (!navActions) return;
   
   const dropdown = document.createElement('div');
-  dropdown.className = 'user-dropdown-wrapper';
+  dropdown.className = 'user-dropdown';
   dropdown.innerHTML = `
-    <div class="navbar__user logged-in">
       <div class="navbar__user-avatar">${user.name.charAt(0).toUpperCase()}</div>
       <span class="navbar__user-name">${user.name.split(' ')[0]}</span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="6,9 12,15 18,9"></polyline>
       </svg>
-    </div>
-    <div class="user-dropdown">
+      
+    <div class="user-dropdown__menu">
       <div class="user-dropdown__item" data-action="profile">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -641,7 +639,7 @@ function createUserDropdown(user) {
         Settings
       </div>
       <div class="user-dropdown__divider"></div>
-      <div class="user-dropdown__item" data-action="logout">
+      <div class="user-dropdown__item user-dropdown__logout" data-action="logout">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
           <polyline points="16,17 21,12 16,7"></polyline>
@@ -662,19 +660,18 @@ function createUserDropdown(user) {
   initUserDropdownEvents(dropdown, user);
 }
 
-function initUserDropdownEvents(wrapper, user) {
-  const userBtn = wrapper.querySelector('.navbar__user');
-  const dropdown = wrapper.querySelector('.user-dropdown');
+function initUserDropdownEvents(dropdown, user) {
+  const menu = dropdown.querySelector('.user-dropdown__menu');
   
   // Toggle dropdown on click
-  userBtn.addEventListener('click', (e) => {
+  dropdown.addEventListener('click', (e) => {
     e.stopPropagation();
     dropdown.classList.toggle('active');
   });
   
   // Close on outside click
   document.addEventListener('click', (e) => {
-    if (!wrapper.contains(e.target)) {
+    if (!dropdown.contains(e.target)) {
       dropdown.classList.remove('active');
     }
   });

@@ -49,7 +49,7 @@ class Marketplace {
         name: 'Organic Fertilizer - 25kg',
         category: 'fertilizers',
         price: 850,
-        image: 'assets/images/fertilizer.jpg',
+        image: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=400&q=80',
         description: 'Premium organic fertilizer for healthy crops'
       },
       {
@@ -57,7 +57,7 @@ class Marketplace {
         name: 'Hybrid Tomato Seeds - 100g',
         category: 'seeds',
         price: 450,
-        image: 'assets/images/seeds.jpg',
+        image: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=400&q=80',
         description: 'High-yield hybrid tomato variety'
       },
       {
@@ -65,7 +65,7 @@ class Marketplace {
         name: 'Neem Oil Pesticide - 1L',
         category: 'pesticides',
         price: 320,
-        image: 'assets/images/pesticide.jpg',
+        image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=400&q=80',
         description: 'Natural neem-based pest control'
       },
       {
@@ -73,7 +73,7 @@ class Marketplace {
         name: 'Drip Irrigation Kit',
         category: 'equipment',
         price: 2500,
-        image: 'assets/images/drip-kit.jpg',
+        image: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=400&q=80',
         description: 'Complete drip irrigation system for small farms'
       },
       {
@@ -81,7 +81,7 @@ class Marketplace {
         name: 'Hand Sprayer - 16L',
         category: 'equipment',
         price: 1200,
-        image: 'assets/images/sprayer.jpg',
+        image: 'https://images.unsplash.com/photo-1622383563227-044011358d16?auto=format&fit=crop&w=400&q=80',
         description: 'Durable manual sprayer for pesticides'
       },
       {
@@ -89,7 +89,7 @@ class Marketplace {
         name: 'Wheat Seeds - 5kg',
         category: 'seeds',
         price: 280,
-        image: 'assets/images/wheat-seeds.jpg',
+        image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=400&q=80',
         description: 'Certified HD-2967 wheat variety'
       },
       {
@@ -97,7 +97,7 @@ class Marketplace {
         name: 'NPK 10-26-26 - 50kg',
         category: 'fertilizers',
         price: 1450,
-        image: 'assets/images/npk.jpg',
+        image: 'https://images.unsplash.com/photo-1585314062604-1a357de8b000?auto=format&fit=crop&w=400&q=80',
         description: 'Balanced NPK fertilizer for all crops'
       },
       {
@@ -105,7 +105,7 @@ class Marketplace {
         name: 'Garden Tool Set',
         category: 'equipment',
         price: 890,
-        image: 'assets/images/tools.jpg',
+        image: 'https://images.unsplash.com/photo-1416872927374-4c60faaf9569?auto=format&fit=crop&w=400&q=80',
         description: '5-piece essential garden tool set'
       },
       {
@@ -113,7 +113,7 @@ class Marketplace {
         name: 'Bio Fungicide - 500ml',
         category: 'pesticides',
         price: 380,
-        image: 'assets/images/fungicide.jpg',
+        image: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=400&q=80',
         description: 'Organic fungicide for disease control'
       },
       {
@@ -121,7 +121,7 @@ class Marketplace {
         name: 'Paddy Seeds - 10kg',
         category: 'seeds',
         price: 520,
-        image: 'assets/images/paddy-seeds.jpg',
+        image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80',
         description: 'High-yielding basmati variety'
       },
       {
@@ -129,7 +129,7 @@ class Marketplace {
         name: 'Vermicompost - 50kg',
         category: 'fertilizers',
         price: 600,
-        image: 'assets/images/vermicompost.jpg',
+        image: 'https://images.unsplash.com/photo-1603816664923-38c267a5df2d?auto=format&fit=crop&w=400&q=80',
         description: 'Premium quality vermicompost'
       },
       {
@@ -137,7 +137,7 @@ class Marketplace {
         name: 'Solar Pest Trap',
         category: 'equipment',
         price: 1850,
-        image: 'assets/images/pest-trap.jpg',
+        image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80',
         description: 'Solar-powered insect trap'
       }
     ];
@@ -217,9 +217,8 @@ class Marketplace {
     
     this.productsGrid.innerHTML = filtered.map(product => `
       <div class="product-card" data-id="${product.id}">
-        <div class="product-card__image-wrapper">
-          <img src="${product.image}" alt="${product.name}" class="product-card__image" 
-               onerror="this.style.display='none'">
+        <div class="product-card__image-wrapper" style="background:#f0f0f0; display:flex; align-items:center; justify-content:center; min-height:220px; border-radius:12px;">
+          <div style="text-align:center; color:#666; font-size:0.9rem;">${product.name}</div>
         </div>
         <div class="product-card__content">
           <span class="product-card__category">${product.category}</span>
@@ -292,8 +291,7 @@ class Marketplace {
       } else {
         this.cartItemsContainer.innerHTML = this.cart.map(item => `
           <div class="cart__item">
-            <img src="${item.image}" alt="${item.name}" class="cart__item-image"
-                 onerror="this.src='assets/images/placeholder.jpg'">
+            <div class="cart__item-image" style="width:60px; height:60px; background:#f0f0f0; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.75rem; text-align:center; color:#999; flex-shrink:0;">${item.name}</div>
             <div class="cart__item-info">
               <div class="cart__item-title">${item.name}</div>
               <div class="cart__item-price">${this.formatPrice(item.price)} × ${item.quantity}</div>

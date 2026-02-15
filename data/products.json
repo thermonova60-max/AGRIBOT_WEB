@@ -1,19 +1,19 @@
 [
-  {
-    "id": 1,
-    "name": "Organic Fertilizer - 25kg",
-    "category": "fertilizers",
-    "price": 850,
-    "image": "assets/images/fertilizer.jpg",
-    "description": "Premium organic fertilizer for healthy crops. Rich in essential nutrients.",
-    "inStock": true
-  },
+    {
+      "id": 1,
+      "name": "Organic Fertilizer - 25kg",
+      "category": "fertilizers",
+      "price": 850,
+      "image": "Images/download.jpg",
+      "description": "Premium organic fertilizer for healthy crops. Rich in essential nutrients.",
+      "inStock": true
+    },
   {
     "id": 2,
     "name": "Hybrid Tomato Seeds - 100g",
     "category": "seeds",
     "price": 450,
-    "image": "assets/images/seeds-tomato.jpg",
+    "image": "Images/download (1).jpg",
     "description": "High-yield hybrid tomato variety. Disease resistant.",
     "inStock": true
   },
@@ -22,7 +22,7 @@
     "name": "Neem Oil Pesticide - 1L",
     "category": "pesticides",
     "price": 320,
-    "image": "assets/images/neem-oil.jpg",
+    "image": "Images/download (2).jpg",
     "description": "100% natural neem-based pest control. Safe for organic farming.",
     "inStock": true
   },
@@ -30,8 +30,8 @@
     "id": 4,
     "name": "Drip Irrigation Kit - 1 Acre",
     "category": "equipment",
-    "price": 12500,
-    "image": "assets/images/drip-kit.jpg",
+    "price": 2500,
+    "image": "Images/download (3).jpg",
     "description": "Complete drip irrigation system with emitters, pipes, and connectors.",
     "inStock": true
   },
@@ -40,7 +40,7 @@
     "name": "Hand Sprayer - 16L",
     "category": "equipment",
     "price": 1200,
-    "image": "assets/images/sprayer.jpg",
+    "image": "Images/download (4).jpg",
     "description": "Durable manual sprayer for pesticides and fertilizers.",
     "inStock": true
   },
@@ -49,7 +49,7 @@
     "name": "Wheat Seeds HD-2967 - 5kg",
     "category": "seeds",
     "price": 280,
-    "image": "assets/images/wheat-seeds.jpg",
+    "image": "Images/download (5).jpg",
     "description": "Certified high-yielding wheat variety. Suitable for rabi season.",
     "inStock": true
   },
@@ -58,7 +58,7 @@
     "name": "NPK 10-26-26 - 50kg",
     "category": "fertilizers",
     "price": 1450,
-    "image": "assets/images/npk.jpg",
+    "image": "Images/download (6).jpg",
     "description": "Balanced NPK fertilizer for all crops. Government approved.",
     "inStock": true
   },
@@ -67,7 +67,7 @@
     "name": "Garden Tool Set - 5 Piece",
     "category": "equipment",
     "price": 890,
-    "image": "assets/images/tools.jpg",
+    "image": "Images/download (7).jpg",
     "description": "Essential garden tools: spade, fork, trowel, pruner, and weeder.",
     "inStock": true
   },
@@ -76,7 +76,7 @@
     "name": "Bio Fungicide - 500ml",
     "category": "pesticides",
     "price": 380,
-    "image": "assets/images/fungicide.jpg",
+    "image": "Images/download (8).jpg",
     "description": "Organic fungicide for disease control. Safe for beneficial insects.",
     "inStock": true
   },
@@ -85,7 +85,7 @@
     "name": "Basmati Paddy Seeds - 10kg",
     "category": "seeds",
     "price": 720,
-    "image": "assets/images/paddy-seeds.jpg",
+    "image": "Images/download (9).jpg",
     "description": "Premium basmati variety. Aromatic and high market value.",
     "inStock": true
   },
@@ -94,7 +94,7 @@
     "name": "Vermicompost - 50kg",
     "category": "fertilizers",
     "price": 600,
-    "image": "assets/images/vermicompost.jpg",
+    "image": "Images/download (10).jpg",
     "description": "Premium quality vermicompost. Improves soil structure and fertility.",
     "inStock": true
   },
@@ -103,7 +103,7 @@
     "name": "Solar Pest Trap",
     "category": "equipment",
     "price": 1850,
-    "image": "assets/images/pest-trap.jpg",
+    "image": "Images/download (11).jpg",
     "description": "Solar-powered insect trap. Eco-friendly pest control.",
     "inStock": true
   },
@@ -112,7 +112,7 @@
     "name": "Onion Seeds - 500g",
     "category": "seeds",
     "price": 350,
-    "image": "assets/images/onion-seeds.jpg",
+    "image": "Images/download.jpg",
     "description": "High-quality onion seeds. Good storage variety.",
     "inStock": true
   },
@@ -121,7 +121,7 @@
     "name": "Potash Fertilizer - 25kg",
     "category": "fertilizers",
     "price": 750,
-    "image": "assets/images/potash.jpg",
+    "image": "Images/download.jpg",
     "description": "Muriate of Potash (MOP). Essential for fruit development.",
     "inStock": true
   },
@@ -130,7 +130,7 @@
     "name": "Bt Cotton Seeds - 450g",
     "category": "seeds",
     "price": 850,
-    "image": "assets/images/cotton-seeds.jpg",
+    "image": "Images/download.jpg",
     "description": "Bollworm resistant Bt cotton variety. High yield potential.",
     "inStock": true
   },
@@ -139,7 +139,7 @@
     "name": "Soil Testing Kit",
     "category": "equipment",
     "price": 1200,
-    "image": "assets/images/soil-kit.jpg",
+    "image": "Images/download.jpg",
     "description": "Complete soil testing kit. Tests pH, NPK, and organic matter.",
     "inStock": true
   },
@@ -148,7 +148,7 @@
     "name": "Insecticide Spray - 1L",
     "category": "pesticides",
     "price": 450,
-    "image": "assets/images/insecticide.jpg",
+    "image": "Images/download.jpg",
     "description": "Broad-spectrum insecticide. Effective against major pests.",
     "inStock": true
   },
@@ -157,7 +157,7 @@
     "name": "Mulching Sheet - 100m",
     "category": "equipment",
     "price": 2200,
-    "image": "assets/images/mulching.jpg",
+    "image": "Images/download.jpg",
     "description": "Black plastic mulching sheet. Reduces weeds and retains moisture.",
     "inStock": true
   },
@@ -166,7 +166,7 @@
     "name": "DAP Fertilizer - 50kg",
     "category": "fertilizers",
     "price": 1350,
-    "image": "assets/images/dap.jpg",
+    "image": "Images/download.jpg",
     "description": "Diammonium Phosphate. Essential for root development.",
     "inStock": true
   },
@@ -175,7 +175,7 @@
     "name": "Chilli Seeds - 100g",
     "category": "seeds",
     "price": 280,
-    "image": "assets/images/chilli-seeds.jpg",
+    "image": "Images/download.jpg",
     "description": "High-yielding green chilli variety. Good for both fresh and dry market.",
     "inStock": true
   }
