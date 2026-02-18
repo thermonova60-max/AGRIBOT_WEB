@@ -185,13 +185,18 @@
   }
 
   /* Chatbot */
+  .chatbot-page {
+    padding-top: 80px;
+    height: calc(100vh - 80px);
+  }
+
   .chat-container {
     margin: 0 1rem;
-    border-radius: var(--radius);
+    border-radius: 0;
   }
 
   .chat-messages {
-    height: 350px;
+    padding: 1.5rem;
   }
 
   .message {
@@ -316,7 +321,6 @@
   }
 
   .chat-messages {
-    height: 300px;
     padding: 1rem;
   }
 
@@ -353,7 +357,7 @@
   }
 
   .chat-messages {
-    height: 250px;
+    padding: 1rem;
   }
 }
 

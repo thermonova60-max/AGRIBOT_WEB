@@ -51,13 +51,7 @@
 
   <!-- Chatbot Page -->
   <section class="chatbot-page">
-    <div class="container">
-      <div class="section-title" style="margin-bottom: 2rem;">
-        <h2>Chat with Agri-Bot</h2>
-        <p>Your 24/7 AI farming assistant - Ask anything about agriculture!</p>
-      </div>
-      
-      <div class="chat-container">
+    <div class="chat-container">
         <!-- Chat Header -->
         <div class="chat-header">
           <div class="chat-header__avatar">
@@ -92,7 +86,7 @@
       </div>
       
       <!-- Chat Tips -->
-      <div style="margin-top: 2rem; text-align: center;">
+      <div style="margin-top: 2rem; text-align: center; display: none;">
         <h4 style="margin-bottom: 1rem; color: var(--primary);">💡 Tips for better responses:</h4>
         <div class="features__grid" style="max-width: 800px; margin: 0 auto;">
           <div style="padding: 1rem; background: var(--bg-white); border-radius: var(--radius); text-align: left;">
@@ -105,12 +99,11 @@
             <strong>Ask about:</strong> Crops, weather, irrigation, pests, fertilizers, schemes
           </div>
         </div>
-      </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="section" style="background-color: var(--bg-white);">
+  <!-- Features Section (Hidden for Chatbot-Only Interface) -->
+  <section class="section" style="background-color: var(--bg-white); display: none;">
     <div class="container">
       <div class="section-title">
         <h2>What Can Agri-Bot Help With?</h2>
@@ -170,7 +163,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" style="display: none;">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
