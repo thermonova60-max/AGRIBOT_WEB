@@ -7,11 +7,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Ollama Configuration - using Gemini 3 Flash Preview (Cloud)
-const OLLAMA_URL = 'http://localhost:11434/api/chat';
-const OLLAMA_MODEL = 'gemini-3-flash-preview:cloud'; // Ollama cloud-hosted Gemini
+const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434/api/chat';
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'gemini-3-flash-preview:cloud';
 
 app.use(cors());
 app.use(express.json());
