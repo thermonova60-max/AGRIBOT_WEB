@@ -18,7 +18,7 @@ class AgriChatbot {
     
     // Ollama Configuration - uses relative URL so it works from any domain
     this.OLLAMA_API_URL = '/api/chat';
-    this.OLLAMA_MODEL = 'llama3.2:3b';
+    this.OLLAMA_MODEL = 'gemini-3-flash-preview:cloud';
     
     // Groq API Configuration (backup - not used when server is running)
     this.GROQ_API_KEY = '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';
